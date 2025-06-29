@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Happy 21 Birthday Naura</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Inter', sans-serif;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                min-height: 100vh;
+                overflow-x: hidden;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .header {
+                text-align: center;
+                padding: 60px 0;
+                animation: fadeInDown 1s ease-out;
+            }
+
+            .header h1 {
+                font-family: 'Playfair Display', serif;
+                font-size: 3.5em;
+                color: white;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                margin-bottom: 20px;
+            }
+
+            .header p {
+                font-size: 1.2em;
+                color: rgba(255,255,255,0.9);
+                font-weight: 300;
+            }
+
+            .photo-gallery {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+                gap: 30px;
+                margin: 60px 0;
+            }
+
+            .photo-card {
+                background: rgba(255,255,255,0.1);
+                backdrop-filter: blur(10px);
+                border-radius: 20px;
+                padding: 20px;
+                text-align: center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                animation: fadeInUp 1s ease-out;
+            }
+
+            .photo-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            }
+
+            .photo-placeholder {
+                width: 100%;
+                height: 250px;
+                background: linear-gradient(45deg,#ff9a9e, #fecfef);
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 20px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .photo-placeholder img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 15px;
+            }
+
+            .photo-placeholder::before{
+                content: '📸';
+                font-size: 3em;
+                opacity: 0.7;
+                position: absolute;
+                z-index: 1;
+            }
+
+            .photo-card h3 {
+                color: white;
+                font-family: 'Playfair Display', serif;
+                font-size: 1.3em;
+                margin-bottom: 10px;
+            }
+            
+            .photo-card p {
+                color: rgba(255,255,255,0.8);
+                line-height: 1.6;
+            }
+
+            .messages {
+                margin: 60px 0;
+            }
+
+            .message-card {
+                background: rgba(255,255,255,0.1);
+                backdrop-filter: blur(15px);
+                border-radius: 25px;
+                padding: 40px;
+                margin-bottom: 30px;
+                text-align: center;
+                border: 1px solid rgba(255,255,255,0.2);
+            }
+
+            .message-card h2 {
+                color: white;
+                font-family: 'Playfair Display', serif;
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+
+            .message-text p {
+                color: rgba(255,255,255,0.9);
+                line-height: 1.8;
+                margin-bottom: 15px;
+                font-size: 1.1em;
+            }
+
+            .birthday-decorations {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 10;
+            }
+
+            .birthday-item {
+                position: absolute;
+                font-size: 2em;
+                animation: birthday-float 8s infinite linear;
+                opacity: 0.8;
+            }
+
+            .birthday-item:nth-child(1) { left: 5%; animation-delay: 0s; }
+            .birthday-item:nth-child(2) { left: 15%; animation-delay: 1s; }
+            .birthday-item:nth-child(3) { left: 25%; animation-delay: 2s; }
+            .birthday-item:nth-child(4) { left: 35%; animation-delay: 3s; }
+            .birthday-item:nth-child(5) { left: 45%; animation-delay: 4s; }
+            .birthday-item:nth-child(6) { left: 55%; animation-delay: 5s; }
+            .birthday-item:nth-child(7) { left: 65%; animation-delay: 1.5s; }
+            .birthday-item:nth-child(8) { left: 75%; animation-delay: 2.5s; }
+            .birthday-item:nth-child(9) { left: 85%; animation-delay: 3.5s; }
+            .birthday-item:nth-child(10) { left: 95%; animation-delay: 4.5s; }
+            
+            @keyframes birthday-float {
+                0%, 100% {
+                    transform: translateY(100vh) rotate(0deg);
+                    opacity: 0;
+                }
+                10%, 90% {
+                    opacity: 0.6;
+                }
+                50% {
+                    transform: translateY(-100px) rotate(360deg);
+                    opacity: 1;
+                }
+            }
+
+            .access-screen {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 1000;
+                flex-direction: column;
+            }
+            
+            .access-card {
+                background: rgba(255,255,255,0.15);
+                backdrop-filter: blur(15px);
+                border-radius: 25px;
+                padding: 40px;
+                text-align: center;
+                border: 1px solid rgba(255,255,255,0.2);
+                max-width: 400px;
+                width: 90%;
+            }
+            
+            .access-card h2 {
+                color: white;
+                font-family: 'Playfair Display', serif;
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+            
+            .access-card p {
+                color: rgba(255,255,255,0.9);
+                margin-bottom: 20px;
+                line-height: 1.6;
+            }
+            
+            .name-input {
+                width: 100%;
+                padding: 15px;
+                border: none;
+                border-radius: 15px;
+                background: rgba(255,255,255,0.2);
+                color: white;
+                font-size: 1.1em;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            
+            .name-input::placeholder {
+                color: rgba(255,255,255,0.7);
+            }
+            
+            .access-button {
+                background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+                border: none;
+                color: white;
+                padding: 15px 30px;
+                border-radius: 25px;
+                font-size: 1.1em;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                width: 100%;
+            }
+            
+            .access-button:hover {
+                transform: scale(1.05);
+                box-shadow: 0 10px 20px rgba(255,107,107,0.3);
+            }
+            
+            .error-message {
+                color: #ff6b6b;
+                background: rgba(255,107,107,0.1);
+                padding: 10px;
+                border-radius: 10px;
+                margin-top: 15px;
+                display: none;
+            }
+            
+            .main-content {
+                display: none;
+            }
+
+            .footer {
+                text-align: center;
+                padding: 40px 0;
+                color: rgba(255,255,255,0.7);
+            }
+            
+            .footer p {
+                font-size: 1.1em;
+                font-style: italic;
+            }
+            
+            /* Animations */
+            @keyframes fadeInDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            
+            /* Interactive Elements */
+            .love-button {
+                background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+                border: none;
+                color: white;
+                padding: 15px 30px;
+                border-radius: 25px;
+                font-size: 1.1em;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin: 20px auto;
+                display: block;
+                font-weight: 500;
+            }
+            
+            .love-button:hover {
+                transform: scale(1.05);
+                box-shadow: 0 10px 20px rgba(255,107,107,0.3);
+            }
+            
+            .sparkle {
+                display: inline-block;
+                animation: sparkle 2s infinite;
+            }
+            
+            @keyframes sparkle {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.3; }
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .header h1 {
+                    font-size: 2.5em;
+                }
+                
+                .photo-gallery {
+                    grid-template-columns: 1fr;
+                }
+                
+                .message-card {
+                    padding: 25px;
+                }
+                
+                .message-card h2 {
+                    font-size: 1.5em;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Access Control Screen -->
+        <div class="access-screen" id="accessScreen">
+            <div class="access-card">
+                <h2>🎂 Selamat Ulang Tahun! 🎉</h2>
+                <p>Website spesial ini dibuat khusus untuk seseorang yang istimewa. Silakan masukkan nama lengkap Anda untuk melanjutkan:</p>
+                <input type="text" class="name-input" id="nameInput" placeholder="Masukkan nama lengkap Anda">
+                <button class="access-button" onclick="checkAccess()">Masuk ke Website</button>
+                <div class="error-message" id="errorMessage">
+                    Maaf, website ini hanya untuk Naura Sahda Auralia. Silakan masukkan nama yang benar! 🎈
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Website Content -->
+        <div class="main-content" id="mainContent">
+            <div class="birthday-decorations">
+                <div class="birthday-item">🎂</div>
+                <div class="birthday-item">🎉</div>
+                <div class="birthday-item">🎈</div>
+                <div class="birthday-item">🎁</div>
+                <div class="birthday-item">🎊</div>
+                <div class="birthday-item">🎂</div>
+                <div class="birthday-item">🎉</div>
+                <div class="birthday-item">🎈</div>
+                <div class="birthday-item">🎁</div>
+                <div class="birthday-item">🎊</div>
+            </div>
+
+            <div class="container">
+                <div class="header">
+                    <h1>Happy 21st Birthday Naura! <span class="sparkle">🎂</span></h1>
+                    <p>Selamat ulang tahun untuk seseorang yang sangat istimewa</p>
+                </div>
+
+                <div class="photo-gallery">
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            <img src="image/foto1.jpg" alt="Naura Birthday Photo 1" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size: 3em; opacity: 0.7;\'>📸</div>';">
+                        </div>
+                        <h3> Ulang Tahun ke-21</h3>
+                        <p>Kamu hebat bisa menjalani umur 20 tahunmu yang penuh struggle.Semoga 21 tahun penuh dengan keindahan dan kebaikan yang kamu harapin.</p>
+                    </div>
+                    
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            <img src="image/foto2.jpg" alt="Naura Birthday Photo 2" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size: 3em; opacity: 0.7;\'>📸</div>';">
+                        </div>
+                        <h3>Pendewasaan</h3>
+                        <p>Dengan semua masalah yang kamu lalui, kamu bisa menjadi Naura yang sesabar dan bisa berubah ke naura yang lebih baik lagi. walaupun sedikit nyebelin.</p>
+                    </div>
+                    
+                    <div class="photo-card">
+                        <div class="photo-placeholder">
+                            <img src="image/foto3.jpg" alt="Naura Birthday Photo 3" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size: 3em; opacity: 0.7;\'>📸</div>';">
+                        </div>
+                        <h3> Petualangan Baru</h3>
+                        <p>Di usia 21, dunia terbuka lebar ga hanya disekitar itu itu saja. Semoga semua impian dan harapannya kamu bisa tercapai. jangan ciwek</p>
+                    </div>
+                </div>
+
+                <div class="messages">
+                    <div class="message-card">
+                        <h2>Ucapan Ulang Tahun 🎂</h2>
+                        <div class="message-text">
+                            <p>Selamat ulang tahun yang ke-21, di umurmu yang udah tua sekarang bisa memilih pilihan yang tepat dan selalu memikirkan resiko yang ada untuk pilihanmu tersebut. selalu yakin dan jalani pilihan kamu</p>
+                            
+                            <p>Di usia yang makin tua, ubah perlahan kebiasaan jeleknya. kadang suka galau sampe gabelajar. inget udah mau ke semester-semester akhir akhir. jangan sampe galau,stres dan trauma yang nimbulin kamu buat hilang arah lagi</p>
+                            
+                            <p>Kalo gaada temen cerita, cerita ke aku. aku excited denger kamu cerita.Terima kasih untuk semuanya. Terima kasih untuk setiap cerita sedih kamu, cerita bahagianya kamu, cerita masalah-masalah hidup kamu. Terimakasih udah menjadikan aku tempat cerita-cerita itu.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="message-card">
+                        <h2>Harapan di Usia 21 🌟</h2>
+                        <div class="message-text">
+                            <p>Di usia 21 yang udah tua ini, aku berharap kamu bisa bahagia dengan pilihan kamu. kejar pencapaian yang pengen kamu capai, buktiin ke orang-orang yang bikin kamu sakit hati. jauhin orang-orang toxic, lebih bodoamat ke orang. jangan mau diajak nakal</p>
+                            
+                            <p>Semoga bisa jadi kakak yang terbaik buat adek-adek kamu, bisa jadi contoh yang baik buat adik kamu. lebih terbuka sama keluarga dengan semua masalah yang kamu hadapin jangan takut sama respon yang bakal dikeluarin. semoga menemukan orang yang  bisa mengeluarkan sifat bocil kamu. tapi ilangin sifat nyebelinnya, jangan dibawa kasihan anak orang </p>
+                            
+                            <p>hilangin satu persatu trauma kamu di umurmu ini, biar bisa lebih percaya diri dan gaada kecemasan atau overthinking. bisa bangun kepercayaan sama orang lain lagi, jangan lupa hidup sehatnya.Selamat ulang tahun, semoga panjang umur dan selalu bahagia! 🎉</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    <p>"Orangnya request foto sendiri, gamau ada foto berduanya. njirlah"</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Access Control Function
+            function checkAccess() {
+                const nameInput = document.getElementById('nameInput');
+                const accessScreen = document.getElementById('accessScreen');
+                const mainContent = document.getElementById('mainContent');
+                const errorMessage = document.getElementById('errorMessage');
+                
+                const enteredName = nameInput.value.trim().toLowerCase();
+                const allowedName = 'naura sahda auralia';
+                
+                if (enteredName === allowedName) {
+                    accessScreen.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    // Show birthday celebration after a delay
+                    setTimeout(() => {
+                        showBirthdayMessage();
+                    }, 1000);
+                } else {
+                    errorMessage.style.display = 'block';
+                    nameInput.value = '';
+                    // Hide error message after 3 seconds
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                }
+            }
+            
+            // Allow Enter key to submit
+            document.getElementById('nameInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    checkAccess();
+                }
+            });
+
+            function showBirthdayMessage() {
+                const messages = [
+                    "🎉 Selamat ulang tahun ke-21 Naura! Semoga selalu bahagia! 🎂",
+                    "🎈 Hari ini adalah hari istimewamu! Nikmati setiap momennya! 🎁",
+                    "🎊 21 tahun yang luar biasa! Semoga tahun ini membawa kebahagiaan! ✨",
+                    "🎂 Happy Birthday! Kamu semakin cantik dan menawan di usia 21! 💖",
+                    "🎉 Semoga semua impianmu terwujud di tahun yang baru ini! 🌟"
+                ];
+                
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                alert(randomMessage);
+            }
+
+            // Add interactive sparkles on click
+            document.addEventListener('click', function(e) {
+                if (document.getElementById('mainContent').style.display === 'block') {
+                    createSparkle(e.clientX, e.clientY);
+                }
+            });
+
+            function createSparkle(x, y) {
+                const sparkles = ['✨', '🎉', '🎊', '🎂', '🎈', '💖'];
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = sparkles[Math.floor(Math.random() * sparkles.length)];
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.fontSize = '20px';
+                sparkle.style.zIndex = '1000';
+                sparkle.style.animation = 'sparkleEffect 1s ease-out forwards';
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+
+            // Add sparkle animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes sparkleEffect {
+                    0% {
+                        opacity: 1;
+                        transform: scale(0) rotate(0deg);
+                    }
+                    50% {
+                        opacity: 1;
+                        transform: scale(1) rotate(180deg);
+                    }
+                    100% {
+                        opacity: 0;
+                        transform: scale(0) rotate(360deg);
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        </script>
+    </body>
+</html>
